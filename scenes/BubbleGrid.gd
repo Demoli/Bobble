@@ -10,11 +10,6 @@ var grid = [
 	['blue','red','green'],
 ]
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	draw_grid()
 
@@ -33,6 +28,5 @@ func draw_grid():
 				 new_bubble.position.x += 25
 			add_child(new_bubble)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
