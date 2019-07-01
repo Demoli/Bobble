@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/bubbles/blue.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Bubble.gd" type="Script" id=1]
+
+[sub_resource type="ImageTexture" id=1]
 
 [node name="Bubble" type="Sprite"]
-texture = ExtResource( 1 )
+position = Vector2( 1, 0 )
+texture = SubResource( 1 )
+script = ExtResource( 1 )

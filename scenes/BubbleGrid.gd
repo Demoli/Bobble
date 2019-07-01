@@ -6,8 +6,9 @@ var bubble_size = 50
 
 var grid = [
 	['blue', 'blue','blue'],
-	['blue','red','green',],
+	['green','red','green',],
 	['blue','red','green'],
+	['blue', 'blue','blue'],
 ]
 
 func _ready():
@@ -20,6 +21,7 @@ func draw_grid():
 		for col_index in range(row.size()):
 			var col = grid[row_index][col_index]
 			var new_bubble = bubble.instance()
+			new_bubble.color = col
 			var row_y = bubble_size * (row_index + 1)
 			var col_x = bubble_size * (col_index + 1)
 			
