@@ -17,6 +17,9 @@ func _init():
 	green.load('res://assets/bubbles/green.png')
 	blue.load('res://assets/bubbles/blue.png')
 
+func _ready():
+	add_to_group("bubbles")
+
 func set_color(new_color):
 	color = new_color
 	
@@ -33,5 +36,5 @@ func handle_collisions():
 	if bodies.size() == 0:
 		return
 		
-	pass
+	mode = RigidBody2D.MODE_STATIC
 	

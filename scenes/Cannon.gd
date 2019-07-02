@@ -13,7 +13,7 @@ var next_color = 'red'
 # var b = "text"
 
 func _ready():
-	load_bubble()
+	$ReloadTimer.start()
 
 func _process(delta):
 	if Input.is_action_pressed("rotate_left"):
@@ -27,10 +27,11 @@ func _process(delta):
 	
 func load_bubble():
 	$ReloadTimer.stop()
-	var bubble =bubble_scene.instance()
+	var bubble = bubble_scene.instance()
 	bubble.color = color
 	bubble.mode = RigidBody2D.MODE_RIGID
-	add_child(bubble)
+	bubble.global_position = global_position
+	get_node("/root").add_child(bubble)
 	loaded_bubble = bubble
 
 func fire():
