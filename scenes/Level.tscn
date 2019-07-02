@@ -9,4 +9,4 @@
 position = Vector2( 310, 475 )
 
 [node name="BubbleGrid" parent="." instance=ExtResource( 2 )]
-position = Vector2( 195, 140 )
+position = Vector2( 215, 45 )

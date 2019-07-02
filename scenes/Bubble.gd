@@ -1,4 +1,4 @@
-extends Sprite
+extends RigidBody2D
 
 var red = Image.new()
 var green = Image.new()
@@ -23,4 +23,4 @@ func set_color(new_color):
 	var itex = ImageTexture.new()
 	var img = colors[color]
 	itex.create_from_image(img)
-	texture = itex
+	$Sprite.texture = itex
