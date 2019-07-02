@@ -8,7 +8,7 @@ var grid = [
 	[null, 'blue', 'blue','green', null],
 	['green', 'green','red','green', null],
 	[null, 'blue','red','blue', null],
-	[null, 'blue', 'green','blue', null],
+	[null, 'blue', 'blue','blue', null],
 ]
 
 func _ready():

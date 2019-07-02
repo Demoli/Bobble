@@ -14,6 +14,8 @@ export var color = 'blue' setget set_color
 
 var matching_bubbles = []
 
+var is_active_bubble = false
+
 func _init():
 	red.load('res://assets/bubbles/red.png')
 	green.load('res://assets/bubbles/green.png')
@@ -34,6 +36,10 @@ func _process(delta):
 	handle_collisions()
 	
 func handle_collisions():
+	
+	if not is_active_bubble:
+		return
+	
 	matching_bubbles.clear()
 	
 	var bodies = get_colliding_bodies()
@@ -43,6 +49,8 @@ func handle_collisions():
 	# Once it's in place max it immovable
 	linear_velocity = Vector2(0,0)
 	mass = 65535
+	is_active_bubble = false
+	
 	matching_bubbles.append(self)
 	handle_deaths(bodies)
 	
