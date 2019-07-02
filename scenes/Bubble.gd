@@ -12,6 +12,8 @@ var colors = {
 
 export var color = 'blue' setget set_color
 
+var matching_bubbles = []
+
 func _init():
 	red.load('res://assets/bubbles/red.png')
 	green.load('res://assets/bubbles/green.png')
@@ -32,9 +34,25 @@ func _process(delta):
 	handle_collisions()
 	
 func handle_collisions():
+	matching_bubbles.clear()
+	
 	var bodies = get_colliding_bodies()
 	if bodies.size() == 0:
 		return
-		
-	mode = RigidBody2D.MODE_STATIC
 	
+	# Once it's in place max it immovable
+	linear_velocity = Vector2(0,0)
+	mass = 65535
+	matching_bubbles.append(self)
+	handle_deaths(bodies)
+	
+	if matching_bubbles.size() >= 3:
+		for bubble in matching_bubbles:
+			bubble.queue_free()
+	
+func handle_deaths(bodies):
+	for body in bodies:
+		if body.color == color and not matching_bubbles.has(body):
+			matching_bubbles.append(body)
+			handle_deaths(body.get_colliding_bodies())
+			

@@ -29,7 +29,7 @@ func load_bubble():
 	$ReloadTimer.stop()
 	var bubble = bubble_scene.instance()
 	bubble.color = color
-	bubble.mode = RigidBody2D.MODE_RIGID
+#	bubble.mode = RigidBody2D.MODE_RIGID
 	bubble.global_position = global_position
 	get_node("/root").add_child(bubble)
 	loaded_bubble = bubble

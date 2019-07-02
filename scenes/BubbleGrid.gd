@@ -24,6 +24,8 @@ func draw_grid():
 			if col == null:
 				continue
 			var new_bubble = bubble.instance()
+			new_bubble.mass = 65535
+#			new_bubble.mode = RigidBody2D.MODE_STATIC
 			new_bubble.color = col
 			var row_y = bubble_size * (row_index + 1)
 			var col_x = bubble_size * (col_index + 1)
