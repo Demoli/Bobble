@@ -26,6 +26,7 @@ func _process(delta):
 	rotation_degrees = clamp(rotation_degrees, -90, 90)
 	
 func load_bubble():
+	$ReloadTimer.stop()
 	var bubble =bubble_scene.instance()
 	bubble.color = color
 	bubble.mode = RigidBody2D.MODE_RIGID
@@ -33,6 +34,6 @@ func load_bubble():
 	loaded_bubble = bubble
 
 func fire():
-	var bubble_vector = Vector2(0,-200).rotated(rotation) * 10
+	var bubble_vector = Vector2(0,-200).rotated(rotation) * 5
 	loaded_bubble.set_linear_velocity(bubble_vector)
 	$ReloadTimer.start()

@@ -5,10 +5,10 @@ onready var bubble : PackedScene = load("res://scenes/Bubble.tscn")
 var bubble_size = 50
 
 var grid = [
-	['blue', 'blue','blue'],
-	['green','red','green',],
-	['blue','red','green'],
-	['blue', 'blue','blue'],
+	[null, 'blue', 'blue','green', null],
+	['green', 'green','red','green', null],
+	[null, 'blue','red','blue', null],
+	[null, 'blue', 'green','blue', null],
 ]
 
 func _ready():
@@ -20,6 +20,9 @@ func draw_grid():
 		var row_odd = row_index % 2
 		for col_index in range(row.size()):
 			var col = grid[row_index][col_index]
+			# Leave a gap
+			if col == null:
+				continue
 			var new_bubble = bubble.instance()
 			new_bubble.color = col
 			var row_y = bubble_size * (row_index + 1)

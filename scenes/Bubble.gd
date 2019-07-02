@@ -24,3 +24,14 @@ func set_color(new_color):
 	var img = colors[color]
 	itex.create_from_image(img)
 	$Sprite.texture = itex
+	
+func _process(delta):
+	handle_collisions()
+	
+func handle_collisions():
+	var bodies = get_colliding_bodies()
+	if bodies.size() == 0:
+		return
+		
+	pass
+	
