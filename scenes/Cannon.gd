@@ -36,6 +36,9 @@ func load_bubble():
 	loaded_bubble = bubble
 
 func fire():
+	if not loaded_bubble:
+		return
 	var bubble_vector = Vector2(0,-200).rotated(rotation) * 5
 	loaded_bubble.set_linear_velocity(bubble_vector)
+	loaded_bubble = null
 	$ReloadTimer.start()
