@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/bubbles/blue.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=2]
-bounce = 100.0
+bounce = 10.0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 29.5272
@@ -21,4 +21,6 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( -0.880249, 0 )
 shape = SubResource( 1 )
+[connection signal="body_shape_entered" from="." to="." method="handle_collisions"]

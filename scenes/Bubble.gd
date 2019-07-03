@@ -33,22 +33,37 @@ func set_color(new_color):
 	$Sprite.texture = itex
 	
 func _process(delta):
-	handle_bubble_collision()
+	if not is_active_bubble:
+		pass
+#		bounce = 0
 	
-func handle_bubble_collision():
+func handle_collisions(body_id, body, body_shape, local_shape):
 	
 	if not is_active_bubble:
 		return
 	
+	if is_body_bubble(body):
+		handle_bubble_collision()
+	
+	if body is Wall:
+		handle_bounce()
+	
+func handle_bounce():
+	pass
+
+func handle_bubble_collision():
 	matching_bubbles.clear()
 	
-	var bodies = get_colliding_bodies()
+	var all_bodies = get_colliding_bodies()
+	
+	var bodies = []
+	
+	for body in all_bodies:
+		if is_body_bubble(body):
+			bodies.append(body)
+	
 	if bodies.size() == 0:
 		return
-	
-	for body in bodies:
-		if not is_body_bubble(body):
-			return
 	
 	# Once it's in place max it immovable
 	linear_velocity = Vector2(0,0)

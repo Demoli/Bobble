@@ -38,7 +38,7 @@ func load_bubble():
 func fire():
 	if not loaded_bubble:
 		return
-	var bubble_vector = Vector2(0,-200).rotated(rotation) * 5
+	var bubble_vector = Vector2(0,-100).rotated(rotation) * 10
 	loaded_bubble.apply_impulse(Vector2(0,0),bubble_vector)
 	loaded_bubble = null
 	$ReloadTimer.start()
