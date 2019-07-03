@@ -20,6 +20,7 @@ func _init():
 	red.load('res://assets/bubbles/red.png')
 	green.load('res://assets/bubbles/green.png')
 	blue.load('res://assets/bubbles/blue.png')
+	bounce = 10
 
 func _ready():
 	add_to_group("bubbles")
@@ -33,9 +34,9 @@ func set_color(new_color):
 	$Sprite.texture = itex
 	
 func _process(delta):
-	handle_collisions()
+	handle_bubble_collision()
 	
-func handle_collisions():
+func handle_bubble_collision():
 	
 	if not is_active_bubble:
 		return
@@ -45,6 +46,10 @@ func handle_collisions():
 	var bodies = get_colliding_bodies()
 	if bodies.size() == 0:
 		return
+	
+	for body in bodies:
+		if not is_body_bubble(body):
+			return
 	
 	# Once it's in place max it immovable
 	linear_velocity = Vector2(0,0)
@@ -64,3 +69,5 @@ func handle_deaths(bodies):
 			matching_bubbles.append(body)
 			handle_deaths(body.get_colliding_bodies())
 			
+func is_body_bubble(body):
+	return get_tree().get_nodes_in_group("bubbles").has(body)
