@@ -20,7 +20,6 @@ func _init():
 	red.load('res://assets/bubbles/red.png')
 	green.load('res://assets/bubbles/green.png')
 	blue.load('res://assets/bubbles/blue.png')
-	bounce = 10
 
 func _ready():
 	add_to_group("bubbles")
