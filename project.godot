@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "StaticBody2D",
+"base": "KinematicBody2D",
+"class": "Bubble",
+"language": "GDScript",
+"path": "res://scenes/Bubble.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Wall",
 "language": "GDScript",
 "path": "res://scenes/Wall.gd"
 } ]
 _global_script_class_icons={
+"Bubble": "",
 "Wall": ""
 }
 

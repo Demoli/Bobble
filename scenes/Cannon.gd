@@ -4,7 +4,7 @@ export var rotate_speed := 1
 
 onready var bubble_scene : PackedScene = preload("res://scenes/Bubble.tscn")
 
-var loaded_bubble : RigidBody2D
+var loaded_bubble : KinematicBody2D
 var color = 'blue'
 var next_color = 'red'
 
@@ -38,7 +38,7 @@ func load_bubble():
 func fire():
 	if not loaded_bubble:
 		return
-	var bubble_vector = Vector2(0,-100).rotated(rotation) * 10
-	loaded_bubble.apply_impulse(Vector2(0,0),bubble_vector)
+		
+	loaded_bubble.fire(rotation)
 	loaded_bubble = null
 	$ReloadTimer.start()
