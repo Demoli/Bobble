@@ -10,14 +10,12 @@
 position = Vector2( 310, 475 )
 
 [node name="Wall" parent="." instance=ExtResource( 2 )]
-position = Vector2( 120, 30 )
 
 [node name="Wall2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 485, 25 )
+position = Vector2( 385, 5 )
 
 [node name="Wall3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 605, 35 )
+position = Vector2( 610, -10 )
 rotation = 1.57079
 
 [node name="BubbleGrid" parent="." instance=ExtResource( 3 )]
-position = Vector2( 175, 90 )

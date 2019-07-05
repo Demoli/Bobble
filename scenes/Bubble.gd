@@ -60,36 +60,38 @@ func _physics_process(delta):
 			
 			var target_row = target.grid_row
 			var target_col = target.grid_col
-			var row = target_row
-			var col = target_col
+			var row
+			var col
 			
-			if dir >= 45 and dir <= 90:
+			if dir == 45 or dir == 90:
 				# 45 to 90 top let
 				row = target_row - 1
-				col = target_col - 1
-			if dir >= 90 and dir <= 135:
+				col = target_col
+			if dir == 135:
 				# 90 to 135 - top right
 				row = target_row - 1
 				col = target_col + 1
 			
-			if dir == 145:
-				# 145 right
+			if dir == 180 or dir == -180:
+				# 180 right TESTED
 				row = target_row
 				col = target_col + 1
 			
-			if dir >= -135 and dir <= -90:
+			if dir == -135:
 				# -135 to -90 = bottom right
 				row = target_row + 1
 				col = target_col + 1
-			if dir >= -90 and dir <= -45:
+			if dir == -90 or dir == -45:
 				# -45 to -90 bottom left - TESTED
 				row = target_row + 1
 				col = target_col
 			
-			if dir == 0:
-				# 0 left
+			if dir == 0 or dir == 90:
+				# 0 left - TESTED
 				row = target_row
 				col = target_col - 1
+				
+			print(dir)
 			
 			get_node("/root/Level/BubbleGrid").add_bubble(
 				row,
