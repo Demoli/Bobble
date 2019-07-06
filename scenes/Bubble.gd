@@ -23,6 +23,8 @@ var matching_bubbles = []
 
 var is_active_bubble = false
 
+onready var bubble_tileset : TileSet = load("res://scenes/tilemap/BubblesTilemap.tres")
+
 func _init():
 	red.load('res://assets/bubbles/red.png')
 	green.load('res://assets/bubbles/green.png')
@@ -50,55 +52,16 @@ func _physics_process(delta):
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		
 		if collision.collider is Wall:
 			velocity = velocity.bounce(collision.normal)
-			pass
-		if is_body_bubble(collision.collider):
-			is_active_bubble = false
-			var target = collision.collider
-			var dir = stepify(rad2deg(target.global_position.angle_to_point(collision.position)), 45)
+			return
 			
-			var target_row = target.grid_row
-			var target_col = target.grid_col
-			var row
-			var col
-			
-			if dir == 45 or dir == 90:
-				# 45 to 90 top let
-				row = target_row - 1
-				col = target_col
-			if dir == 135:
-				# 90 to 135 - top right
-				row = target_row - 1
-				col = target_col + 1
-			
-			if dir == 180 or dir == -180:
-				# 180 right TESTED
-				row = target_row
-				col = target_col + 1
-			
-			if dir == -135:
-				# -135 to -90 = bottom right
-				row = target_row + 1
-				col = target_col + 1
-			if dir == -90 or dir == -45:
-				# -45 to -90 bottom left - TESTED
-				row = target_row + 1
-				col = target_col
-			
-			if dir == 0 or dir == 90:
-				# 0 left - TESTED
-				row = target_row
-				col = target_col - 1
-				
-			print(dir)
-			
-			get_node("/root/Level/BubbleGrid").add_bubble(
-				row,
-				col,
-				color
-			)
-			queue_free()
-
-func is_body_bubble(body):
-	return get_tree().get_nodes_in_group("bubbles").has(body)
+		var target = collision.collider
+		print(target)
+		
+		var grid : TileMap = get_node("/root/Level/Tiles")
+		var tile_pos = grid.world_to_map(position)
+		
+		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name("blue"))
+		queue_free()

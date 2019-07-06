@@ -2,20 +2,22 @@
 
 [ext_resource path="res://scenes/Cannon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/BubbleGrid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/TilemapTest.tscn" type="PackedScene" id=3]
 
 [node name="Level" type="Node2D"]
 
 [node name="Cannon" parent="." instance=ExtResource( 1 )]
-position = Vector2( 310, 475 )
+position = Vector2( 320, 480 )
 
 [node name="Wall" parent="." instance=ExtResource( 2 )]
 
 [node name="Wall2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 385, 5 )
+position = Vector2( 585, 0 )
 
 [node name="Wall3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 610, -10 )
+position = Vector2( 595, -35 )
 rotation = 1.57079
 
-[node name="BubbleGrid" parent="." instance=ExtResource( 3 )]
+[node name="Tiles" parent="." instance=ExtResource( 3 )]
+collision_bounce = 0.18
+tile_data = PoolIntArray( 2, 2, 0, 3, 2, 0, 4, 0, 0, 5, 0, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 2, 0, 65537, 2, 0, 65538, 1, 0, 65539, 2, 0, 65540, 1, 0, 65541, 2, 0, 65542, 0, 0, 65543, 2, 0, 65544, 1, 0, 65545, 2, 0, 131073, 0, 0, 131074, 0, 0, 131075, 1, 0, 131076, 1, 0, 131077, 2, 0, 131078, 2, 0, 131079, 0, 0, 131080, 1, 0, 131081, 1, 0, 131082, 0, 0 )
