@@ -13,6 +13,7 @@ var next_color = 'red'
 # var b = "text"
 
 func _ready():
+	$ReloadTimer.wait_time = .1
 	$ReloadTimer.start()
 
 func _process(delta):
@@ -42,3 +43,4 @@ func fire():
 	loaded_bubble.fire(rotation)
 	loaded_bubble = null
 	$ReloadTimer.start()
+	
