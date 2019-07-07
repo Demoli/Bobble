@@ -4,13 +4,69 @@ class_name BubbleTilemap
 
 var grid : Array
 var connectable_points = []
+onready var level_width = world_to_map(get_node("/root/Level/RightWall").position).x
 
 func _ready():
 	pass
-#	calculate_deaths(Vector2(0,0))
-#	calculate_deaths(Vector2(0,4))
+#	calculate_collision_deaths(Vector2(0,0))
+#	calculate_collision_deaths(Vector2(0,4))
 
-func calculate_deaths(origin : Vector2):
+func _process(delta):
+	calculate_unsupported_deaths()
+	pass
+
+func calculate_unsupported_deaths():
+	connectable_points.clear()	
+	var rect = get_used_rect()
+	var height = rect.size.y + rect.position.y
+	var width = rect.size.x + rect.position.x
+	
+	grid = []
+	grid.resize(height)
+	
+	for row in range(height):
+		var new_row = []
+		new_row.resize(width)
+		grid[row] = new_row
+		
+		for col in range(width):
+			if get_cell(col,row) != -1:
+				grid[row][col] = 1
+	
+	# Find islands of neighbour bubbles 
+	createIslands(grid)
+	
+	for group in connectable_points:
+		var has_neighbours = false
+		var group_is_safe = false
+		for point in group:
+			
+			# If the points is on an edge it's safe
+			var is_top_edge = (point - Vector2(0,1)).y == -1
+			var is_left_edge = (point - Vector2(1,0)).x == -1
+			var is_right_edge = (point + Vector2(1,0)).x == level_width
+			
+			if is_top_edge or is_left_edge or is_right_edge:
+				group_is_safe = true
+			
+			for child_group in connectable_points:
+				if child_group == group:
+					continue
+					
+				for child_point in child_group:
+					if point.distance_to(child_point) <= 1:
+						has_neighbours = true
+		
+		if group_is_safe:
+			continue
+		
+		if not has_neighbours:
+			for point in group:
+				set_cellv(point, -1)
+	
+	pass
+
+func calculate_collision_deaths(origin : Vector2):
 	"""
 		Calculate which bubbles are now destroyed starting from origin grid position
 	"""
@@ -48,13 +104,6 @@ func calculate_deaths(origin : Vector2):
 func _input(event):
 	if event is InputEventMouseButton:
 		print(world_to_map(get_global_mouse_position()))
-
-
-func get_id_by_position(nav : AStar, position : Vector3):
-
-	for id in nav.get_points():
-		if nav.get_point_position(id) == position:
-			return id
 	
 func append_if(queue, x, y):
 	"""Append to the queue only if in bounds of the grid and the cell value is 1."""

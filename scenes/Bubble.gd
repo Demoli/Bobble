@@ -65,5 +65,5 @@ func _physics_process(delta):
 		
 		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name("blue"))
 		
-		grid.calculate_deaths(tile_pos)
+		grid.calculate_collision_deaths(tile_pos)
 		

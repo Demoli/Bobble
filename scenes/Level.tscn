@@ -9,12 +9,12 @@
 [node name="Cannon" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 480 )
 
-[node name="Wall" parent="." instance=ExtResource( 2 )]
+[node name="LeftWall" parent="." instance=ExtResource( 2 )]
 
-[node name="Wall2" parent="." instance=ExtResource( 2 )]
+[node name="TopWall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 585, 0 )
 
-[node name="Wall3" parent="." instance=ExtResource( 2 )]
+[node name="RightWall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 595, -35 )
 rotation = 1.57079
 
