@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 class_name Bubble
 
-var red = Image.new()
-var green = Image.new()
-var blue = Image.new()
+var red = StreamTexture.new()
+var green = StreamTexture.new()
+var blue = StreamTexture.new()
 
 var colors = {
 	'red':red,
@@ -26,9 +26,9 @@ var is_active_bubble = false
 onready var bubble_tileset : TileSet = load("res://scenes/tilemap/BubblesTilemap.tres")
 
 func _init():
-	red.load('res://assets/bubbles/red.png')
-	green.load('res://assets/bubbles/green.png')
-	blue.load('res://assets/bubbles/blue.png')
+	red.load('res://.import/red.png-77dd0501947f935ddd6759a4ff01d885.stex')
+	green.load('res://.import/green.png-c3348bd2e26365f683bbb4a29fd46daa.stex')
+	blue.load('res://.import/blue.png-7e9a8a78df35b67899c89ad943d12acd.stex')
 
 func _ready():
 	set_process(false)
@@ -37,10 +37,10 @@ func _ready():
 func set_color(new_color):
 	color = new_color
 	
-	var itex = ImageTexture.new()
-	var img = colors[color]
-	itex.create_from_image(img)
-	$Sprite.texture = itex
+#	var itex = ImageTexture.new()
+	var stex = colors[color]
+#	itex.create_from_image(img)
+	$Sprite.texture = stex
 	
 func fire(rotation):
 	set_process(true)
