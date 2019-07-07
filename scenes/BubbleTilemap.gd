@@ -19,6 +19,11 @@ func _process(delta):
 #	calculate_unsupported_deaths()
 	pass
 
+func add_bubble_collision(global_pos, color):
+	var tile_pos = world_to_map(global_pos)
+	set_cellv(tile_pos,tile_set.find_tile_by_name(color))
+	calculate_collision_deaths(tile_pos)
+
 func calculate_unsupported_deaths():
 	connectable_points.clear()	
 	var rect = get_used_rect()

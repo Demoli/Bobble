@@ -58,13 +58,10 @@ func _physics_process(delta):
 			return
 			
 		var target = collision.collider
-		var grid : BubbleTilemap = get_node("/root/Level/BubbleTilemap")
-		var tile_pos = grid.world_to_map(position)
+		var grid = get_node("/root/Level/BubbleTilemap")
+		grid.add_bubble_collision(position, color)
+
 		queue_free()
-		
-		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name(color))
-		
-		grid.calculate_collision_deaths(tile_pos)
 
 func spwan_and_die(new_position, new_color):
 	position = new_position
