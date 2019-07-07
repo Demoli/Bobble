@@ -2,94 +2,71 @@ extends TileMap
 
 class_name BubbleTilemap
 
-var matching_bubbles = []
+var grid : Array
+var connectable_points = []
+
+func _ready():
+	pass
+#	calculate_deaths(Vector2(0,0))
+#	calculate_deaths(Vector2(0,4))
 
 func calculate_deaths(origin : Vector2):
 	"""
 		Calculate which bubbles are now destroyed starting from origin grid position
 	"""
-	
-	
+	connectable_points.clear()	
 	var rect = get_used_rect()
 	var tile_id = get_cellv(origin)	
-	var count = 0
-	var grid = []
-	for row_index in range(rect.size.x + rect.position.x):
-		var row = []
-		for col_index in range(rect.size.y):
-			if get_cell(row_index, col_index) == tile_id:
-				row.append(1)
-				count += 1
-			else:
-				row.append(0)
-#			row.append(Vector2(row_index, col_index))
-		grid.append(row)
-			
-	numIslands(grid, tile_id)
 	
-	for row in range(grid.size()):
-		for col in range(grid[row].size()):
-			if grid[row][col] == 2:
-				set_cell(row,col,-1)
+	grid = []
+	grid.resize(rect.size.y)
 	
-	pass
-#
-#	for index in range(used_cells.size()):
-#		var tile = used_cells[index]
-#		var point = Vector3(tile.x,tile.y, 0)
-#
-#		nav.add_point(index, point, 1)
-#
-#	for cell in get_used_cells_by_id(tile_id):
-#		var targets = [
-##			Vector2(cell.x,cell.y) # 0,0
-#			Vector2(cell.x, cell.y -1), # 0,-1,
-#			Vector2(cell.x -1, cell.y), # -1,0
-#			Vector2(cell.x, cell.y + 1), # 0,1
-#			Vector2(cell.x + 1 , cell.y), # 1,0
-##			Vector2(cell.x + 1 , cell.y + 1), # 1,1
-##			Vector2(cell.x + 1 , cell.y -1), # 1,-1
-#		]
-#
-#		for target in targets:
-#			if get_cellv(target) == tile_id:
-#				var cell_id = get_id_by_position(nav, Vector3(cell.x, cell.y, 0))
-#				var target_id = get_id_by_position(nav, Vector3(target.x, target.y, 0))
-#
-#				nav.connect_points(cell_id, target_id)
-#
-#	for cell in get_used_cells_by_id(tile_id):
-#		var origin_id = get_id_by_position(nav, Vector3(origin.x, origin.y, 0))
-#		var id = get_id_by_position(nav, Vector3(cell.x, cell.y, 0))
-#		var path = nav.get_point_path(origin_id, id)
-#
-#		if path.size() < 3:
-#			continue
-#
-#		for point in path:
-#			set_cell(point.x, point.y, -1)
+	for row in range(rect.size.y):
+		var new_row = []
+		new_row.resize(rect.size.x)
+		grid[row] = new_row
+		
+		for col in range(rect.size.x):
+			if get_cell(col,row) == tile_id:
+				grid[row][col] = 1
 	
+	# Find islands of neighbour bubbles 
+	createIslands(grid)
+
+	# find the group containing the fired bubble nd kill them all
+	var group_to_clear = []
+	for group in connectable_points:
+		
+		if group.has(origin) and group.size() >= 3:
+			group_to_clear = group
+			break;
+	
+	for point in group_to_clear:
+		set_cellv(point, -1)
+
+func _input(event):
+	if event is InputEventMouseButton:
+		print(world_to_map(get_global_mouse_position()))
+
 
 func get_id_by_position(nav : AStar, position : Vector3):
 
 	for id in nav.get_points():
 		if nav.get_point_position(id) == position:
 			return id
-			
-####################################
 	
-var grid
-
-func append_if(queue, x, y, search):
+func append_if(queue, x, y):
 	"""Append to the queue only if in bounds of the grid and the cell value is 1."""
-	if 0 <= grid.size() and x < grid.size() and 0 <= grid[x].size() and y < grid[x].size():
+	if 0 <= grid.size() and x < grid.size() and 0 <= x and 0 <= y and 0 <= grid[x].size() and y < grid[x].size():
 		if grid[x][y] == 1:
 			queue.append(Vector2(x,y))
 
-func mark_neighbors(row, col, search):
+
+func mark_neighbors(row, col):
 	"""Mark all the cells in the current island with value = 2. Breadth-first search."""
 	
 	var queue = []
+	var connected = []
 	
 	queue.append(Vector2(row, col))
 	while queue.size() > 0:
@@ -97,13 +74,21 @@ func mark_neighbors(row, col, search):
 		var x = element.x
 		var y = element.y
 		grid[x][y] = 2
+		if not connected.has(Vector2(element.y,element.x)):
+			connected.append(Vector2(element.y,element.x))
 		
-		append_if(queue, x - 1, y, search)
-		append_if(queue, x, y - 1, search)
-		append_if(queue, x + 1, y, search)
-		append_if(queue, x, y + 1, search)
+		append_if(queue, x - 1, y)
+		append_if(queue, x, y - 1)
+		append_if(queue, x + 1, y)
+		append_if(queue, x, y + 1)
+		append_if(queue, x + 1, y + 1)
+		append_if(queue, x + 1, y - 1)
+		append_if(queue, x - 1, y - 1)
+		append_if(queue, x - 1, y + 1)
+	
+	connectable_points.append(connected)
 
-func numIslands(new_grid, tile_id):
+func createIslands(new_grid):
 	grid = new_grid
 	
 	if not grid or grid.size() == 0 or grid[0].size() == 0:
@@ -115,4 +100,4 @@ func numIslands(new_grid, tile_id):
 	for row in range(row_length):
 		for col in range(col_length):
 			if grid[row][col] == 1:
-				mark_neighbors(row, col, tile_id)
+				mark_neighbors(row, col)
