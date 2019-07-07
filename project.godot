@@ -39,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 game_state="*res://autoload/game_state.gd"
+enums="*res://autoload/enums.gd"
 
 [input]
 

@@ -14,7 +14,7 @@ func _ready():
 #	calculate_collision_deaths(Vector2(0,4))
 
 func _process(delta):
-	calculate_unsupported_deaths()
+#	calculate_unsupported_deaths()
 	pass
 
 func calculate_unsupported_deaths():
@@ -64,9 +64,8 @@ func calculate_unsupported_deaths():
 		
 		if not has_neighbours:
 			for point in group:
+				kill_bubble(point)
 				set_cellv(point, -1)
-	
-	pass
 
 func calculate_collision_deaths(origin : Vector2):
 	"""
@@ -101,8 +100,10 @@ func calculate_collision_deaths(origin : Vector2):
 			break;
 	
 	for point in group_to_clear:
-		set_cellv(point, -1)
 		kill_bubble(point)
+		set_cellv(point, -1)
+		
+	calculate_unsupported_deaths()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -158,4 +159,8 @@ func createIslands(new_grid):
 func kill_bubble(point: Vector2):
 	var new_bubble = bubble.instance()
 	get_node("/root/Level").add_child(new_bubble)
-	new_bubble.spwan_and_die(map_to_world(point), 'blue')
+#	var color = enums.TileColorMap[]
+	var tile_color = get_cellv(point)
+	tile_color = enums.TileColorMap[tile_color]
+	print(tile_color)
+	new_bubble.spwan_and_die(map_to_world(point), tile_color)

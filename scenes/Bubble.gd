@@ -71,12 +71,8 @@ func spwan_and_die(position, new_color):
 	global_position = position
 	set_collision_layer_bit(0, false)
 	set_collision_mask_bit(0, false)
+	set_color(new_color)
 	
 	var wobble = randi() % 100
 	var local_speed = speed - randi() % 150
 	velocity = Vector2(wobble, local_speed)
-	color = new_color
-	
-	pass
-	
-#	.add_child(self)
