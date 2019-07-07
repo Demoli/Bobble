@@ -6,7 +6,7 @@ onready var bubble_scene : PackedScene = preload("res://scenes/Bubble.tscn")
 
 var loaded_bubble : KinematicBody2D
 var color = 'blue'
-var next_color = 'red'
+var next_color = 'green'
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -35,6 +35,9 @@ func load_bubble():
 	bubble.global_position = global_position
 	get_node("/root").add_child(bubble)
 	loaded_bubble = bubble
+	
+	# TODO Cycle colours using some as yet undetermined method
+	color = next_color
 
 func fire():
 	if not loaded_bubble:

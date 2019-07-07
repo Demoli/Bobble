@@ -63,7 +63,7 @@ func _physics_process(delta):
 
 		queue_free()
 		
-		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name("blue"))
+		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name(color))
 		
 		grid.calculate_collision_deaths(tile_pos)
 		
