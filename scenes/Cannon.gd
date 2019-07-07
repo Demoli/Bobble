@@ -13,7 +13,7 @@ var next_color = 'green'
 # var b = "text"
 
 func _ready():
-#	$ReloadTimer.wait_time = .1
+	$ReloadTimer.wait_time = 1
 	$ReloadTimer.start()
 
 func _process(delta):

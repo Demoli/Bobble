@@ -7,15 +7,15 @@
 [node name="Level" type="Node2D"]
 
 [node name="Cannon" parent="." instance=ExtResource( 1 )]
-position = Vector2( 320, 480 )
+position = Vector2( 145, 390 )
 
 [node name="LeftWall" parent="." instance=ExtResource( 2 )]
 
 [node name="TopWall" parent="." instance=ExtResource( 2 )]
-position = Vector2( 585, 0 )
+position = Vector2( 280, 0 )
 
 [node name="RightWall" parent="." instance=ExtResource( 2 )]
-position = Vector2( 595, -35 )
+position = Vector2( 595, -5 )
 rotation = 1.57079
 
 [node name="BubbleTilemap" parent="." instance=ExtResource( 3 )]

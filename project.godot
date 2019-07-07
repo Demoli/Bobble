@@ -41,6 +41,12 @@ config/icon="res://icon.png"
 game_state="*res://autoload/game_state.gd"
 enums="*res://autoload/enums.gd"
 
+[display]
+
+window/size/width=300
+window/size/height=400
+window/size/resizable=false
+
 [input]
 
 rotate_left={

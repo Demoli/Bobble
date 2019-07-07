@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/Cannon.gd" type="Script" id=2]
 
 [node name="Cannon" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -25 )
 script = ExtResource( 2 )

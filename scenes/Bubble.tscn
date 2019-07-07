@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/bubbles/blue.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.7283
+radius = 8.38063
 
 [node name="Bubble" type="KinematicBody2D"]
 position = Vector2( 1, 0 )
