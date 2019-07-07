@@ -8,7 +8,7 @@
 vertices = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 20, 0, 30, 0, 34, 2, 42, 6, 46, 12, 50, 18, 50, 30, 46, 38, 42, 44, 40, 46, 36, 48, 30, 50, 20, 50, 14, 48, 6, 42, 2, 36, 0, 30, 0, 18, 4, 12, 8, 6, 14, 2 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
@@ -31,7 +31,7 @@ points = PoolVector2Array( 0, 0, 50, 0, 50, 50, 0, 50 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0

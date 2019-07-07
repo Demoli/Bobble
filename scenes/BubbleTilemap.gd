@@ -16,17 +16,19 @@ func calculate_deaths(origin : Vector2):
 	"""
 	connectable_points.clear()	
 	var rect = get_used_rect()
+	var height = rect.size.y + rect.position.y
+	var width = rect.size.x + rect.position.x
 	var tile_id = get_cellv(origin)	
 	
 	grid = []
-	grid.resize(rect.size.y)
+	grid.resize(height)
 	
-	for row in range(rect.size.y):
+	for row in range(height):
 		var new_row = []
-		new_row.resize(rect.size.x)
+		new_row.resize(width)
 		grid[row] = new_row
 		
-		for col in range(rect.size.x):
+		for col in range(width):
 			if get_cell(col,row) == tile_id:
 				grid[row][col] = 1
 	
@@ -36,7 +38,6 @@ func calculate_deaths(origin : Vector2):
 	# find the group containing the fired bubble nd kill them all
 	var group_to_clear = []
 	for group in connectable_points:
-		
 		if group.has(origin) and group.size() >= 3:
 			group_to_clear = group
 			break;
