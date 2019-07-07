@@ -6,6 +6,8 @@ var grid : Array
 var connectable_points = []
 onready var level_width = world_to_map(get_node("/root/Level/RightWall").position).x
 
+onready var bubble = load("res://scenes/Bubble.tscn")
+
 func _ready():
 	pass
 #	calculate_collision_deaths(Vector2(0,0))
@@ -100,6 +102,7 @@ func calculate_collision_deaths(origin : Vector2):
 	
 	for point in group_to_clear:
 		set_cellv(point, -1)
+		kill_bubble(point)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -151,3 +154,8 @@ func createIslands(new_grid):
 		for col in range(col_length):
 			if grid[row][col] == 1:
 				mark_neighbors(row, col)
+
+func kill_bubble(point: Vector2):
+	var new_bubble = bubble.instance()
+	get_node("/root/Level").add_child(new_bubble)
+	new_bubble.spwan_and_die(map_to_world(point), 'blue')

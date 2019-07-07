@@ -47,7 +47,7 @@ func fire(rotation):
 	velocity = Vector2(0, -speed).rotated(rotation)
 	
 func _physics_process(delta):
-	if not velocity or not is_active_bubble:
+	if not velocity: #or not is_active_bubble:
 		return
 	
 	var collision = move_and_collide(velocity * delta)
@@ -66,4 +66,17 @@ func _physics_process(delta):
 		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name(color))
 		
 		grid.calculate_collision_deaths(tile_pos)
-		
+
+func spwan_and_die(position, new_color):
+	global_position = position
+	set_collision_layer_bit(0, false)
+	set_collision_mask_bit(0, false)
+	
+	var wobble = randi() % 100
+	var local_speed = speed - randi() % 150
+	velocity = Vector2(wobble, local_speed)
+	color = new_color
+	
+	pass
+	
+#	.add_child(self)

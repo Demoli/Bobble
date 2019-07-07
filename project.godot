@@ -36,6 +36,10 @@ config/name="Bobble"
 run/main_scene="res://scenes/Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+game_state="*res://autoload/game_state.gd"
+
 [input]
 
 rotate_left={
