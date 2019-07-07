@@ -21,11 +21,11 @@ position = Vector2( 150, 380 )
 position = Vector2( -20, 0 )
 
 [node name="RightWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 300, 5 )
-
-[node name="TopWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 590, -20 )
-rotation = 1.57079
+position = Vector2( 300, 0 )
 
 [node name="BubbleTilemap" parent="." instance=ExtResource( 4 )]
-tile_data = PoolIntArray( 6, 0, 0, 7, 0, 0, 65542, 0, 0, 65543, 0, 0, 131072, 0, 0, 131077, 0, 0, 131078, 0, 0, 196608, 0, 0, 196624, 1, 0, 196625, 1, 0, 262144, 0, 0, 262160, 1, 0, 262161, 1, 0, 262162, 1, 0, 327680, 0, 0, 327696, 1, 0, 327697, 1, 0 )
+tile_data = PoolIntArray( 65543, 0, 0, 65544, 0, 0, 131080, 0, 0, 196624, 1, 0, 196625, 1, 0, 262160, 1, 0, 262161, 1, 0, 262162, 1, 0, 327696, 1, 0, 327697, 1, 0 )
+
+[node name="TopWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 355, 0 )
+rotation = 1.57079

@@ -46,13 +46,17 @@ func calculate_unsupported_deaths():
 		for point in group:
 			
 			# If the points is on an edge it's safe
-			var is_top_edge = (point - Vector2(0,1)).y == -1
+			var grid_top = point - Vector2(0,1)
+			var wall_top = world_to_map(get_node("/root/Level/TopWall").position)
+			var is_top_edge = grid_top.y <= wall_top.y
 			var is_left_edge = (point - Vector2(1,0)).x == -1
 			var is_right_edge = (point + Vector2(1,0)).x == level_width
 			
 			if is_top_edge or is_left_edge or is_right_edge:
 				group_is_safe = true
-			
+			else:
+				pass
+
 			for child_group in connectable_points:
 				if child_group == group:
 					continue
@@ -111,7 +115,7 @@ func calculate_collision_deaths(origin : Vector2):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		print(world_to_map(get_global_mouse_position()))
+		print(world_to_map(get_global_mouse_position()) - world_to_map(position))
 	
 func append_if(queue, x, y):
 	"""Append to the queue only if in bounds of the grid and the cell value is 1."""

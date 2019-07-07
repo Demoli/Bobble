@@ -60,9 +60,8 @@ func _physics_process(delta):
 		var target = collision.collider
 		var grid : BubbleTilemap = get_node("/root/Level/BubbleTilemap")
 		var tile_pos = grid.world_to_map(position)
-
 		queue_free()
-		print(tile_pos,bubble_tileset.find_tile_by_name(color))
+		
 		grid.set_cellv(tile_pos,bubble_tileset.find_tile_by_name(color))
 		
 		grid.calculate_collision_deaths(tile_pos)
