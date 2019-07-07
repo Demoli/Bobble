@@ -2,6 +2,8 @@ extends TileMap
 
 class_name BubbleTilemap
 
+const BUBBLE_FALL_DELAY = .02
+
 var grid : Array
 var connectable_points = []
 onready var level_width = world_to_map(get_node("/root/Level/RightWall").position).x
@@ -65,6 +67,7 @@ func calculate_unsupported_deaths():
 		if not has_neighbours:
 			for point in group:
 				kill_bubble(point)
+				yield(get_tree().create_timer(BUBBLE_FALL_DELAY), "timeout")
 				set_cellv(point, -1)
 
 func calculate_collision_deaths(origin : Vector2):
@@ -101,6 +104,7 @@ func calculate_collision_deaths(origin : Vector2):
 	
 	for point in group_to_clear:
 		kill_bubble(point)
+		yield(get_tree().create_timer(BUBBLE_FALL_DELAY), "timeout")
 		set_cellv(point, -1)
 		
 	calculate_unsupported_deaths()
@@ -139,7 +143,9 @@ func mark_neighbors(row, col):
 		append_if(queue, x + 1, y - 1)
 		append_if(queue, x - 1, y - 1)
 		append_if(queue, x - 1, y + 1)
-	
+		
+		connected.sort_custom(self, "sort_anticlockwise")
+		
 	connectable_points.append(connected)
 
 func createIslands(new_grid):
@@ -159,8 +165,9 @@ func createIslands(new_grid):
 func kill_bubble(point: Vector2):
 	var new_bubble = bubble.instance()
 	get_node("/root/Level").add_child(new_bubble)
-#	var color = enums.TileColorMap[]
 	var tile_color = get_cellv(point)
 	tile_color = enums.TileColorMap[tile_color]
-	print(tile_color)
 	new_bubble.spwan_and_die(map_to_world(point), tile_color)
+	
+func sort_anticlockwise(a, b):
+	return (a).angle() > (b).angle()

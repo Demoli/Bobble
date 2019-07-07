@@ -67,8 +67,8 @@ func _physics_process(delta):
 		
 		grid.calculate_collision_deaths(tile_pos)
 
-func spwan_and_die(position, new_color):
-	global_position = position
+func spwan_and_die(new_position, new_color):
+	position = new_position
 	set_collision_layer_bit(0, false)
 	set_collision_mask_bit(0, false)
 	set_color(new_color)
