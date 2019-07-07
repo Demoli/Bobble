@@ -18,9 +18,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("rotate_left"):
-		rotation -= rotate_speed * delta
+		$Pointer.rotation -= rotate_speed * delta
 	if Input.is_action_pressed("rotate_right"):
-		rotation += rotate_speed * delta
+		$Pointer.rotation += rotate_speed * delta
 	if Input.is_action_pressed("fire"):
 		fire()
 
@@ -32,7 +32,7 @@ func load_bubble():
 	bubble.color = color
 	bubble.is_active_bubble = true
 #	bubble.mode = RigidBody2D.MODE_RIGID
-	bubble.global_position = global_position
+	bubble.global_position = $Pointer.global_position
 	get_node("/root").add_child(bubble)
 	loaded_bubble = bubble
 	

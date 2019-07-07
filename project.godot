@@ -46,6 +46,10 @@ enums="*res://autoload/enums.gd"
 window/size/width=300
 window/size/height=400
 window/size/resizable=false
+window/size/borderless=true
+window/size/fullscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 

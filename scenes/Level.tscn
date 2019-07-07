@@ -7,7 +7,7 @@
 [node name="Level" type="Node2D"]
 
 [node name="Cannon" parent="." instance=ExtResource( 1 )]
-position = Vector2( 145, 390 )
+position = Vector2( 150, 380 )
 
 [node name="LeftWall" parent="." instance=ExtResource( 2 )]
 

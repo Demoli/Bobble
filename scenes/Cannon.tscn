@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/cannon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Cannon.gd" type="Script" id=2]
+[ext_resource path="res://assets/cannon_pointer.png" type="Texture" id=3]
 
 [node name="Cannon" type="Sprite"]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, -25 )
 script = ExtResource( 2 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="Pointer" type="Sprite" parent="."]
+position = Vector2( 0, -5 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -5 )
 [connection signal="timeout" from="ReloadTimer" to="." method="load_bubble"]
