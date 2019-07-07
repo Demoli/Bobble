@@ -8,5 +8,4 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 cell_half_offset = 0
 format = 1
-tile_data = PoolIntArray( 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0 )
 script = ExtResource( 2 )

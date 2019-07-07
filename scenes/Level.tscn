@@ -20,12 +20,14 @@ stretch_mode = 2
 position = Vector2( 150, 380 )
 
 [node name="LeftWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( -15, 5 )
 
 [node name="TopWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 280, 0 )
+position = Vector2( 288.185, 0 )
 
 [node name="RightWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 595, -5 )
+position = Vector2( 590, -5 )
 rotation = 1.57079
 
 [node name="BubbleTilemap" parent="." instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0 )

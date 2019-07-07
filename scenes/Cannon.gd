@@ -43,7 +43,7 @@ func fire():
 	if not loaded_bubble:
 		return
 		
-	loaded_bubble.fire(rotation)
+	loaded_bubble.fire($Pointer.rotation)
 	loaded_bubble = null
 	$ReloadTimer.start()
 	
