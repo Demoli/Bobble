@@ -5,8 +5,8 @@ export var rotate_speed := 1
 onready var bubble_scene : PackedScene = preload("res://scenes/Bubble.tscn")
 
 var loaded_bubble : KinematicBody2D
-var color = 'blue'
-var next_color = 'green'
+var color = 'green'
+var next_color = 'blue'
 
 # Declare member variables here. Examples:
 # var a = 2

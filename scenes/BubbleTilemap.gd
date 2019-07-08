@@ -7,8 +7,9 @@ const BUBBLE_FALL_DELAY = .02
 var grid : Array
 var connectable_points = []
 onready var level_width = world_to_map(get_node("/root/Level/RightWall").position).x
-
 onready var bubble = load("res://scenes/Bubble.tscn")
+
+var vertical_offset = 0
 
 func _ready():
 	pass
@@ -21,6 +22,7 @@ func _process(delta):
 
 func add_bubble_collision(global_pos, color):
 	var tile_pos = world_to_map(global_pos)
+	tile_pos.y -= vertical_offset
 	set_cellv(tile_pos,tile_set.find_tile_by_name(color))
 	calculate_collision_deaths(tile_pos)
 
@@ -180,3 +182,8 @@ func kill_bubble(point: Vector2):
 	
 func sort_anticlockwise(a, b):
 	return (a).angle() > (b).angle()
+	
+func move_down():
+	""" Move all tiles down 1 position """
+	position.y += 16
+	vertical_offset += 1
