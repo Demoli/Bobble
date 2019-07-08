@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/youdied.ogg-40e0715b55751c69b4740e3621f7244f.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/youdied.ogg"
+dest_files=[ "res://.import/youdied.ogg-40e0715b55751c69b4740e3621f7244f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
